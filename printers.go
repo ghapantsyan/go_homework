@@ -5,21 +5,25 @@ import (
 	"strings"
 )
 
+const doubles_type = "doubles"
+const uniqs_type = "uniqs"
+const counts_type = "counts"
+
 func ResultPrinter(rowCnts map[int]int, originalText string, typeOfPrint string) {
 
 	slicedText := strings.Split(originalText, "\n")
 	var condition func(cnt int) bool
 	printCnt := false
 
-	if typeOfPrint == "doubles" {
+	if typeOfPrint == doubles_type {
 		condition = func(cnt int) bool {
 			return cnt > 1
 		}
-	} else if typeOfPrint == "uniqs" {
+	} else if typeOfPrint == uniqs_type {
 		condition = func(cnt int) bool {
 			return cnt == 1
 		}
-	} else if typeOfPrint == "counts" {
+	} else if typeOfPrint == counts_type {
 		condition = func(cnt int) bool {
 			return cnt > 0
 		}
@@ -47,15 +51,15 @@ func GetTypeOfPrint(uniqs bool, doubles bool, counts bool) string {
 	typeOfPrint := ""
 
 	if uniqs {
-		typeOfPrint = "uniqs"
+		typeOfPrint = uniqs_type
 		counter++
 	}
 	if doubles {
-		typeOfPrint = "doubles"
+		typeOfPrint = doubles_type
 		counter++
 	}
 	if counts {
-		typeOfPrint = "counts"
+		typeOfPrint = counts_type
 		counter++
 	}
 	if counter == 1 {
